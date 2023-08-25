@@ -2,15 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Todo {
-  id: Float!
-  firstName: String!
-  lastName: String!
-  email: String!
-  password: String!
-  role: String!
-}
-
 type User {
   id: Float!
   firstName: String!
@@ -20,17 +11,26 @@ type User {
   role: String!
 }
 
+type Todo {
+  id: Int!
+  title: String!
+  date: String!
+  completed: Boolean!
+  user: User!
+}
+
 type Query {
   user: [User!]!
-  todo(id: Int!): Todo!
+  findAllTodosNotCompletedById(userId: Int!): [Todo!]!
+  findAllTodosCompletedById(userId: Int!): [Todo!]!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): String!
   removeUser(id: Int!): String!
   createTodo(createTodoInput: CreateTodoInput!): Todo!
-  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
-  removeTodo(id: Int!): Todo!
+  updateTodo(updateTodoInput: Int!): String!
+  removeTodo(id: Int!): String!
 }
 
 input CreateUserInput {
@@ -42,12 +42,6 @@ input CreateUserInput {
 }
 
 input CreateTodoInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateTodoInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  title: String!
   id: Int!
 }

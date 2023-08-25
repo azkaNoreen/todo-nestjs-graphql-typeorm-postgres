@@ -11,32 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Todo = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const user_entity_1 = require("../../user/entities/user.entity");
 let Todo = exports.Todo = class Todo {
 };
 __decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)(() => graphql_1.Int),
     __metadata("design:type", Number)
 ], Todo.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], Todo.prototype, "firstName", void 0);
+], Todo.prototype, "title", void 0);
 __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], Todo.prototype, "lastName", void 0);
+], Todo.prototype, "date", void 0);
 __decorate([
     (0, graphql_1.Field)(),
-    __metadata("design:type", String)
-], Todo.prototype, "email", void 0);
+    __metadata("design:type", Boolean)
+], Todo.prototype, "completed", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
-], Todo.prototype, "password", void 0);
-__decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
-], Todo.prototype, "role", void 0);
+    (0, graphql_1.Field)(() => user_entity_1.User),
+    __metadata("design:type", user_entity_1.User)
+], Todo.prototype, "user", void 0);
 exports.Todo = Todo = __decorate([
     (0, graphql_1.ObjectType)()
 ], Todo);

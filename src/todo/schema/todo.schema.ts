@@ -1,25 +1,20 @@
-import { ObjectType, Field } from '@nestjs/graphql';
-
-
+import { ObjectType, Field,Int } from '@nestjs/graphql';
+import { User } from 'src/user/entities/user.entity';
 @ObjectType()
 export class Todo {
 
-  @Field()
+  @Field(() => Int)
   id: number;
 
   @Field()
-  firstName:string
+  title:string
 
   @Field()
-  lastName:string
+  date:string
 
   @Field()
-  email:string
+  completed:boolean
 
-  @Field()
-  password:string
-
-  @Field()
-  role:string 
-
+  @Field(()=> User)
+  user:User
 }

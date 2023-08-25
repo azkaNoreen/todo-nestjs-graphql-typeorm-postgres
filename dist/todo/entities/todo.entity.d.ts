@@ -4,7 +4,5 @@ export declare class TodoEntity {
     title: string;
     date: string;
     completed: boolean;
-    password: string;
-    role: string;
     user: User;
 }

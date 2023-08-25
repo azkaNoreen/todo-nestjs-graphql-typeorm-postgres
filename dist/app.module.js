@@ -10,7 +10,6 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const todo_module_1 = require("./todo/todo.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const graphql_1 = require("@nestjs/graphql");
 const apollo_1 = require("@nestjs/apollo");
@@ -18,6 +17,8 @@ const user_schema_1 = require("./user/schema/user.schema");
 const user_resolver_1 = require("./user/user.resolver");
 const user_service_1 = require("./user/user.service");
 const todo_entity_1 = require("./todo/entities/todo.entity");
+const todo_resolver_1 = require("./todo/todo.resolver");
+const todo_service_1 = require("./todo/todo.service");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -40,10 +41,10 @@ exports.AppModule = AppModule = __decorate([
                 autoSchemaFile: 'src/schema.graphql',
                 definitions: { path: 'src/graphql.ts' }
             }),
-            todo_module_1.TodoModule
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, user_resolver_1.UserResolver, user_service_1.UserService],
+        providers: [app_service_1.AppService, user_resolver_1.UserResolver, user_service_1.UserService, todo_resolver_1.TodoResolver, todo_service_1.TodoService],
+        exports: [user_service_1.UserService]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

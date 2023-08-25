@@ -6,19 +6,8 @@ export interface CreateUserInput {
     role: string;
 }
 export interface CreateTodoInput {
-    exampleField: number;
-}
-export interface UpdateTodoInput {
-    exampleField?: Nullable<number>;
+    title: string;
     id: number;
-}
-export interface Todo {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    role: string;
 }
 export interface User {
     id: number;
@@ -28,16 +17,22 @@ export interface User {
     password: string;
     role: string;
 }
+export interface Todo {
+    id: number;
+    title: string;
+    date: string;
+    completed: boolean;
+    user: User;
+}
 export interface IQuery {
     user(): User[] | Promise<User[]>;
-    todo(id: number): Todo | Promise<Todo>;
+    findAllTodosNotCompletedById(userId: number): Todo[] | Promise<Todo[]>;
+    findAllTodosCompletedById(userId: number): Todo[] | Promise<Todo[]>;
 }
 export interface IMutation {
     createUser(createUserInput: CreateUserInput): string | Promise<string>;
     removeUser(id: number): string | Promise<string>;
     createTodo(createTodoInput: CreateTodoInput): Todo | Promise<Todo>;
-    updateTodo(updateTodoInput: UpdateTodoInput): Todo | Promise<Todo>;
-    removeTodo(id: number): Todo | Promise<Todo>;
+    updateTodo(updateTodoInput: number): string | Promise<string>;
+    removeTodo(id: number): string | Promise<string>;
 }
-type Nullable<T> = T | null;
-export {};

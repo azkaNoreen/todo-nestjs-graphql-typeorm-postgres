@@ -14,9 +14,13 @@ const graphql_1 = require("@nestjs/graphql");
 let CreateTodoInput = exports.CreateTodoInput = class CreateTodoInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Example field (placeholder)' }),
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], CreateTodoInput.prototype, "title", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_1.Int),
     __metadata("design:type", Number)
-], CreateTodoInput.prototype, "exampleField", void 0);
+], CreateTodoInput.prototype, "id", void 0);
 exports.CreateTodoInput = CreateTodoInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateTodoInput);

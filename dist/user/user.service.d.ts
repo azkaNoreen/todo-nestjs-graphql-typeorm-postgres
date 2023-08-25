@@ -7,5 +7,6 @@ export declare class UserService {
     create(createUserInput: CreateUserInput): Promise<string>;
     findAll(): Promise<User[]>;
     findUserByEmail(email: string): Promise<User>;
+    findUserByID(id: number): Promise<User>;
     remove(id: number): Promise<String>;
 }

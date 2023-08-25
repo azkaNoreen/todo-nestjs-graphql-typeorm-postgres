@@ -37,6 +37,9 @@ let UserService = exports.UserService = class UserService {
     findUserByEmail(email) {
         return this.userRepo.findOneOrFail({ where: { email: email } });
     }
+    findUserByID(id) {
+        return this.userRepo.findOneOrFail({ where: { id: id } });
+    }
     async remove(id) {
         let books = await this.userRepo.delete(id);
         return "user deleted";

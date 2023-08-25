@@ -1,26 +1,48 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTodoInput } from './dto/create-todo.input';
 import { UpdateTodoInput } from './dto/update-todo.input';
+import { TodoEntity } from './entities/todo.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserService } from 'src/user/user.service';
+
+//Add todo based on user id
+//find all todos based on user id (not completed)
+//find all completed todos based on user id (not completed)
+//mark todo as completed based on todo id
+//delete todo based on todo id
 
 @Injectable()
 export class TodoService {
-  create(createTodoInput: CreateTodoInput) {
-    return 'This action adds a new todo';
+  constructor(@InjectRepository(TodoEntity) private todoRepo: Repository<TodoEntity>,
+    private userService: UserService) { }
+
+  async create(createTodoInput: CreateTodoInput) {
+    let todo: TodoEntity = new TodoEntity()
+    todo.title = createTodoInput.title
+    todo.date = new Date().toLocaleString()
+    todo.completed = false
+    todo.user = await this.userService.findUserByID(createTodoInput.id)
+    return this.todoRepo.save(todo)
+  }
+ 
+  findAllTodosNotCompletedById(userId: number) {
+    return this.todoRepo.find({ relations: ['user'], where: { user: { id: userId }, completed: false }, })
   }
 
-  findAll() {
-    return `This action returns all todo`;
+  findAllTodosCompletedById(userId: number) {
+    return this.todoRepo.find({ relations: ['user'], where: { user: { id: userId }, completed: true }, })
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} todo`;
+  async update(id: number) {
+    let up=await this.todoRepo.findOneBy({id:id})
+    up.completed=true
+    await this.todoRepo.save(up);
+    return "done"
   }
 
-  update(id: number, updateTodoInput: UpdateTodoInput) {
-    return `This action updates a #${id} todo`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
+  async remove(id: number) { 
+    await this.todoRepo.delete(id)
+    return "deleted"
   }
 }

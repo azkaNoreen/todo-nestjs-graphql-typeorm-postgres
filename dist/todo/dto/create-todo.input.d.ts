@@ -1,3 +1,4 @@
 export declare class CreateTodoInput {
-    exampleField: number;
+    title: string;
+    id: number;
 }

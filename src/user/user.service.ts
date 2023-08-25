@@ -28,6 +28,10 @@ export class UserService {
     return this.userRepo.findOneOrFail({where:{email:email }})
   }
 
+    findUserByID(id:number){
+    return this.userRepo.findOneOrFail({where:{id:id }})
+  }
+
   async remove(id: number):Promise<String> {
     let books=await this.userRepo.delete(id)
     return "user deleted"

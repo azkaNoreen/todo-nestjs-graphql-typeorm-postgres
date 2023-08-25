@@ -31,14 +31,6 @@ __decorate([
     __metadata("design:type", Boolean)
 ], TodoEntity.prototype, "completed", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], TodoEntity.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], TodoEntity.prototype, "role", void 0);
-__decorate([
     (0, typeorm_1.ManyToOne)(() => user_schema_1.User, (user) => user.todos),
     __metadata("design:type", user_schema_1.User)
 ], TodoEntity.prototype, "user", void 0);

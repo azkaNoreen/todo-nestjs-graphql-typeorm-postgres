@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TodoModule } from './todo/todo.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
@@ -9,6 +8,8 @@ import { User } from './user/schema/user.schema';
 import { UserResolver } from './user/user.resolver';
 import { UserService } from './user/user.service';
 import { TodoEntity } from './todo/entities/todo.entity';
+import { TodoResolver } from './todo/todo.resolver';
+import { TodoService } from './todo/todo.service';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -28,8 +29,9 @@ import { TodoEntity } from './todo/entities/todo.entity';
       autoSchemaFile: 'src/schema.graphql',
       definitions:{path:'src/graphql.ts'}
     })   ,
-     TodoModule],
+     ],
   controllers: [AppController],
-  providers: [AppService,UserResolver,UserService],
+  providers: [AppService,UserResolver,UserService,TodoResolver,TodoService],
+  exports: [UserService]
 })
 export class AppModule {}

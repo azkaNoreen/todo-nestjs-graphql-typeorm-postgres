@@ -4,8 +4,13 @@ import { CreateTodoInput } from './dto/create-todo.input';
 import { UpdateTodoInput } from './dto/update-todo.input';
 import { Todo } from './schema/todo.schema';
 
+//Add todo based on user id
+//find all todos based on user id (not completed)
+//find all completed todos based on user id (not completed)
+//mark todo as completed based on todo id
+//delete todo based on todo id
 
-@Resolver(() => Todo)
+@Resolver()
 export class TodoResolver {
   constructor(private readonly todoService: TodoService) {}
 
@@ -14,22 +19,23 @@ export class TodoResolver {
     return this.todoService.create(createTodoInput);
   }
 
-  @Query(() => [Todo], { name: 'todo' })
-  findAll() {
-    return this.todoService.findAll();
+  @Query(() => [Todo]) 
+  async findAllTodosNotCompletedById(@Args('userId', { type: () => Int }) userId: number) {
+    return this.todoService.findAllTodosNotCompletedById(userId);
   }
 
-  @Query(() => Todo, { name: 'todo' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.todoService.findOne(id);
+  @Query(() => [Todo]) 
+  async findAllTodosCompletedById(@Args('userId', { type: () => Int }) userId: number) {
+    return this.todoService.findAllTodosNotCompletedById(userId);
   }
 
-  @Mutation(() => Todo)
-  updateTodo(@Args('updateTodoInput') updateTodoInput: UpdateTodoInput) {
-    return this.todoService.update(updateTodoInput.id, updateTodoInput);
+  @Mutation
+  (() => String)
+  updateTodo(@Args('updateTodoInput', { type: () => Int }) updateTodoInput: number) {
+    return this.todoService.update(updateTodoInput);
   }
 
-  @Mutation(() => Todo)
+  @Mutation(() => String)
   removeTodo(@Args('id', { type: () => Int }) id: number) {
     return this.todoService.remove(id);
   }

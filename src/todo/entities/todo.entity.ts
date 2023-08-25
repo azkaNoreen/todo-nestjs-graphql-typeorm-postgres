@@ -15,12 +15,6 @@ export class TodoEntity  {
   @Column()
   completed :boolean 
 
-  @Column()
-  password:string
-
-  @Column()
-  role:string
-
   @ManyToOne( ()=>User, (user)=>user.todos  )
   user:User
 }
