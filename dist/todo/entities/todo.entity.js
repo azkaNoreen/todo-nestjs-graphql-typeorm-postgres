@@ -9,15 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Todo = void 0;
-const graphql_1 = require("@nestjs/graphql");
-let Todo = exports.Todo = class Todo {
+exports.TodoEntity = void 0;
+const user_schema_1 = require("../../user/schema/user.schema");
+const typeorm_1 = require("typeorm");
+let TodoEntity = exports.TodoEntity = class TodoEntity {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int, { description: 'Example field (placeholder)' }),
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Todo.prototype, "exampleField", void 0);
-exports.Todo = Todo = __decorate([
-    (0, graphql_1.ObjectType)()
-], Todo);
+], TodoEntity.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], TodoEntity.prototype, "title", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], TodoEntity.prototype, "date", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Boolean)
+], TodoEntity.prototype, "completed", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], TodoEntity.prototype, "password", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], TodoEntity.prototype, "role", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => user_schema_1.User, (user) => user.todos),
+    __metadata("design:type", user_schema_1.User)
+], TodoEntity.prototype, "user", void 0);
+exports.TodoEntity = TodoEntity = __decorate([
+    (0, typeorm_1.Entity)()
+], TodoEntity);
 //# sourceMappingURL=todo.entity.js.map

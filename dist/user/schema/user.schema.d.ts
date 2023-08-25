@@ -1,3 +1,4 @@
+import { TodoEntity } from "src/todo/entities/todo.entity";
 export declare class User {
     id: number;
     firstName: string;
@@ -5,4 +6,5 @@ export declare class User {
     email: string;
     password: string;
     role: string;
+    todos: TodoEntity[];
 }

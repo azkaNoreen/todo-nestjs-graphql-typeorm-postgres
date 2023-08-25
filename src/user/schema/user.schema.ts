@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { TodoEntity } from "src/todo/entities/todo.entity";
+import { Column, Entity, PrimaryGeneratedColumn ,OneToMany} from "typeorm";
 
 @Entity()
 export class User {
@@ -19,4 +20,7 @@ export class User {
 
   @Column()
   role:string
+
+  @OneToMany( ()=> TodoEntity, (todo)=> todo.user)
+todos:TodoEntity[]
 }
