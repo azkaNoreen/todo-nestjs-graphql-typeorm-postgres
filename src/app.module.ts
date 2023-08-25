@@ -8,6 +8,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { User } from './user/schema/user.schema';
 import { UserResolver } from './user/user.resolver';
 import { UserService } from './user/user.service';
+import { TodoEntity } from './todo/entities/todo.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -17,10 +18,10 @@ import { UserService } from './user/user.service';
       username: 'postgres',
       password: 'password',
       database: 'practice',
-      entities:[User],
+      entities:[User,TodoEntity],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User,TodoEntity]),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver:ApolloDriver,
       playground:true,

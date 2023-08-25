@@ -17,6 +17,7 @@ const apollo_1 = require("@nestjs/apollo");
 const user_schema_1 = require("./user/schema/user.schema");
 const user_resolver_1 = require("./user/user.resolver");
 const user_service_1 = require("./user/user.service");
+const todo_entity_1 = require("./todo/entities/todo.entity");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -29,10 +30,10 @@ exports.AppModule = AppModule = __decorate([
                 username: 'postgres',
                 password: 'password',
                 database: 'practice',
-                entities: [user_schema_1.User],
+                entities: [user_schema_1.User, todo_entity_1.TodoEntity],
                 synchronize: true,
             }),
-            typeorm_1.TypeOrmModule.forFeature([user_schema_1.User]),
+            typeorm_1.TypeOrmModule.forFeature([user_schema_1.User, todo_entity_1.TodoEntity]),
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 playground: true,

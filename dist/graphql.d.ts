@@ -13,7 +13,12 @@ export interface UpdateTodoInput {
     id: number;
 }
 export interface Todo {
-    exampleField: number;
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    role: string;
 }
 export interface User {
     id: number;

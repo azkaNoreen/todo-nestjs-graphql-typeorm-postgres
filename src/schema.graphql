@@ -3,8 +3,12 @@
 # ------------------------------------------------------
 
 type Todo {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  id: Float!
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  role: String!
 }
 
 type User {
