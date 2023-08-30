@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTodoInput } from './dto/create-todo.input';
-import { UpdateTodoInput } from './dto/update-todo.input';
 import { TodoEntity } from './entities/todo.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
